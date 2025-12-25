@@ -1,1 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIX BEAT | Professional Music Production</title>
+    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/WbqXPxsG/Whats-App-Image-2025-12-18-at-10-26-12-AM-(1).jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #1a1a1a;
+            --accent-red: #b2e639;
+            --accent-gold: #d4af37;
+            --metallic-gray: #7d7d7d;
+            --light-gray: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--light-gray);
+            overflow-x: hidden;
+        }
+
+        /* Header with Logo */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background-color: rgba(10, 10, 10, 0.95);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        .header-logo {
+            height: 50px;
+            width: auto;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .site-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .site-title span {
+            color: var(--accent-red);
+        }
+
+        /* Cinematic Intro */
+        #cinematic-intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #000;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .cd-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin-bottom: 40px;
+        }
+
+        .cd-disc {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 50%, #1a1a1a 100%);
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            animation: rotate 20s linear infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cd-disc::before {
+            content: '';
+            position: absolute;
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #000 0%, #222 100%);
+        }
+
+        .cd-disc::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--accent-red);
+            z-index: 2;
+        }
+
+        .cd-hole {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #000;
+            z-index: 1;
+        }
+
+        .logo-center {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+        }
+
+        .logo-center-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .intro-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 2s forwards 1.5s;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Main Content */
+        .main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        .main-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Left Navigation */
+        .left-nav {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 80px;
+            background-color: rgba(26, 26, 26, 0.9);
+            border-radius: 0 10px 10px 0;
+            padding: 20px 10px;
+            z-index: 100;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-item:hover {
+            transform: translateX(5px);
+        }
+
+        .nav-item.active {
+            transform: translateX(10px);
+        }
+
+        .nav-item.active .nav-icon {
+            color: var(--accent-red);
+        }
+
+        .nav-item.active .nav-text {
+            opacity: 1;
+        }
+
+        .nav-icon {
+            font-size: 1.8rem;
+            color: var(--metallic-gray);
+            margin-bottom: 5px;
+            transition: color 0.3s;
+        }
+
+        .nav-text {
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        /* Sections */
+        .section {
+            min-height: 100vh;
+            padding: 140px 100px 80px 150px;
+            display: none;
+            width: 100%;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent-gold);
+        }
+
+        /* Home Section */
+        #home {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 40px;
+            max-width: 700px;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-bottom: 50px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-red);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            border: 2px solid var(--accent-red);
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--accent-red);
+        }
+
+        /* Services Section */
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background-color: var(--secondary-dark);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--accent-red);
+            transition: transform 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-left-color: var(--accent-gold);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .service-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .service-description {
+            color: var(--metallic-gray);
+            line-height: 1.6;
+        }
+
+        .counter-container {
+            background-color: rgba(26, 26, 26, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 50px;
+            border: 1px solid var(--accent-gold);
+        }
+
+        .counter-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            color: var(--accent-red);
+            margin-bottom: 10px;
+        }
+
+        .counter-label {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Artist Collaborations */
+        .artists-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .artist-card {
+            height: 300px;
+            background-color: var(--secondary-dark);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .artist-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .artist-card:hover .artist-image {
+            transform: scale(1.1);
+        }
+
+        .artist-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .artist-info-panel {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 26, 26, 0.95);
+            padding: 30px;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+            overflow-y: auto;
+        }
+
+        .artist-card:nth-child(even) .artist-info-panel {
+            transform: translateX(100%);
+        }
+
+        .artist-card:hover .artist-info-panel {
+            transform: translateX(0);
+        }
+
+        .artist-info-title {
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .artist-info-genre {
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .artist-info-description {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Our Work */
+        .work-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .work-item {
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .work-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .work-item:hover .work-image {
+            transform: scale(1.1);
+        }
+
+        .work-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, rgba(52, 78, 10, 0.767));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .work-item:hover .work-overlay {
+            opacity: 1;
+        }
+
+        /* Contact & Owner Sections */
+        .contact-container, .owner-container {
+            display: flex;
+            align-items: center;
+            margin-top: 50px;
+            gap: 50px;
+        }
+
+        .contact-form, .owner-info {
+            flex: 1;
+            background-color: var(--secondary-dark);
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--light-gray);
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--metallic-gray);
+            border-radius: 5px;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: var(--accent-red);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #c1121f;
+        }
+
+        .owner-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-red);
+            margin-right: 30px;
+            float: left;
+        }
+
+        .owner-name {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin: 20px 0 10px;
+        }
+
+        .owner-title {
+            font-size: 1.2rem;
+            color: var(--metallic-gray);
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #000;
+            padding: 40px 100px 40px 150px;
+            text-align: center;
+            border-top: 1px solid var(--secondary-dark);
+        }
+
+        .footer-logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-img {
+            height: 60px;
+            width: auto;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .footer-logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--accent-red);
+        }
+
+        .footer-text {
+            color: var(--metallic-gray);
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        /* Cinematic Notification */
+        .cinematic-notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            border: 2px solid var(--accent-gold);
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s ease;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .cinematic-notification.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            pointer-events: all;
+        }
+
+        .notification-title {
+            color: var(--accent-red);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .notification-text {
+            color: var(--light-gray);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .notification-close {
+            background-color: var(--accent-gold);
+            color: var(--primary-dark);
+            border: none;
+            padding: 10px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .notification-close:hover {
+            background-color: var(--accent-red);
+            color: white;
+        }
+
+        /* Social Links */
+        .social-link {
+            color: var(--metallic-gray);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            color: var(--accent-red);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .section {
+                padding: 140px 80px 80px 130px;
+            }
+            
+            .footer {
+                padding: 40px 80px 40px 130px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .left-nav {
+                width: 70px;
+                padding: 15px 8px;
+            }
+            
+            .section {
+                padding: 140px 60px 80px 110px;
+            }
+            
+            .artists-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero-title {
+                font-size: 4rem;
+            }
+            
+            .footer {
+                padding: 40px 60px 40px 110px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .section {
+                padding: 140px 50px 80px 100px;
+            }
+            
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 3rem;
+            }
+            
+            .footer {
+                padding: 40px 50px 40px 100px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-nav {
+                display: none;
+            }
+            
+            .section {
+                padding: 140px 30px 80px 30px;
+            }
+            
+            .artists-grid, .services-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .contact-container, .owner-container {
+                flex-direction: column;
+            }
+            
+            .footer {
+                padding: 40px 30px;
+            }
+            
+            .owner-image {
+                float: none;
+                margin: 0 auto 30px;
+                display: block;
+            }
+            
+            .owner-name, .owner-title {
+                text-align: center;
+            }
+            
+            .contact-info {
+                text-align: center;
+            }
+            
+            .contact-info h3, .contact-info p {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .site-header {
+                padding: 0 15px;
+                height: 60px;
+            }
+            
+            .header-logo {
+                height: 40px;
+                margin-right: 15px;
+            }
+            
+            .site-title {
+                font-size: 1.5rem;
+            }
+            
+            .section {
+                padding: 120px 20px 60px 20px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .counter-number {
+                font-size: 3rem;
+            }
+            
+            .service-card, .contact-form, .owner-info {
+                padding: 20px;
+            }
+            
+            .footer {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .site-header {
+                height: 55px;
+            }
+            
+            .header-logo {
+                height: 35px;
+                margin-right: 10px;
+            }
+            
+            .site-title {
+                font-size: 1.3rem;
+            }
+            
+            .cd-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .logo-center {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .logo-center-img {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .intro-text {
+                font-size: 1.2rem;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 0.9rem;
+            }
+            
+            .section {
+                padding: 110px 15px 50px 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .counter-number {
+                font-size: 2.5rem;
+            }
+            
+            .service-title {
+                font-size: 1.5rem;
+            }
+            
+            .artist-name {
+                font-size: 1.3rem;
+                padding: 15px;
+            }
+        }
+
+        /* Mobile Navigation Alternative */
+        .mobile-nav-toggle {
+            display: none;
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+            background-color: var(--accent-red);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            .left-nav {
+                display: none;
+                top: 70px;
+                width: 100%;
+                height: auto;
+                border-radius: 0;
+                padding: 10px;
+                transform: none;
+                background-color: rgba(26, 26, 26, 0.95);
+            }
+            
+            .left-nav.active {
+                display: block;
+            }
+            
+            .nav-list {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            
+            .nav-item {
+                margin: 10px;
+                flex: 0 0 calc(33.333% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-item {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+
+        /* Service link button */
+        .service-link-button {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: var(--accent-red);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .service-link-button:hover {
+            background-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Cinematic Notification -->
+    <div id="cinematicNotification" class="cinematic-notification">
+        <h3 class="notification-title">Coming Soon</h3>
+        <p class="notification-text">This feature is currently being developed and will be available soon. Stay tuned for updates!</p>
+        <button class="notification-close">Close</button>
+    </div>
+
+    <!-- Header with Logo -->
+    <header class="site-header">
+        <img src="https://i.postimg.cc/wMv4Jv86/Whats-App-Image-2025-12-18-at-10-26-12-AM-(1).png" alt="MIX BEAT Logo" class="header-logo">
+        <h1 class="site-title">MIX <span>BEAT</span></h1>
+        <button class="mobile-nav-toggle" id="mobileNavToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Cinematic Intro -->
+    <div id="cinematic-intro">
+        <div class="cd-container">
+            <div class="cd-disc">
+                <div class="cd-hole"></div>
+                <div class="logo-center">
+                    <img src="https://i.postimg.cc/wMv4Jv86/Whats-App-Image-2025-12-18-at-10-26-12-AM-(1).png" alt="MIX BEAT Logo" class="logo-center-img">
+                </div>
+            </div>
+        </div>
+        <div class="intro-text">Professional Music Production</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Left Navigation -->
+        <nav class="left-nav" id="leftNav">
+            <ul class="nav-list">
+                <li class="nav-item active" data-target="home">
+                    <div class="nav-icon"><i class="fas fa-home"></i></div>
+                    <div class="nav-text">Home</div>
+                </li>
+                <li class="nav-item" data-target="services">
+                    <div class="nav-icon"><i class="fas fa-sliders-h"></i></div>
+                    <div class="nav-text">Services</div>
+                </li>
+                <li class="nav-item" data-target="artists">
+                    <div class="nav-icon"><i class="fas fa-users"></i></div>
+                    <div class="nav-text">Artists</div>
+                </li>
+                <li class="nav-item" data-target="work">
+                    <div class="nav-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="nav-text">Our Work</div>
+                </li>
+                <li class="nav-item" data-target="owner">
+                    <div class="nav-icon"><i class="fas fa-user-tie"></i></div>
+                    <div class="nav-text">Owner</div>
+                </li>
+                <li class="nav-item" data-target="contact">
+                    <div class="nav-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="nav-text">Contact</div>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <h1 class="hero-title">MIX BEAT</h1>
+            <h2 class="hero-subtitle">Professional Music Production & Sound Engineering</h2>
+            <p class="hero-description">
+                We transform musical visions into reality. With cutting-edge technology, 
+                expert sound engineers, and a passion for perfection, we create audio 
+                experiences that resonate with audiences worldwide. From beat production 
+                to full album mastering, we are your partner in musical excellence.
+            </p>
+            <!-- تم تغيير زر CTA ليعمل بشكل صحيح -->
+            <button class="cta-button" id="exploreServicesBtn">Explore Our Services</button>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section">
+            <h2 class="section-title">Our Services</h2>
+            
+            <div class="counter-container">
+                <div class="counter-number" id="service-counter">0</div>
+                <div class="counter-label">Projects Completed & Counting</div>
+                <div class="counter-label" style="margin-top: 10px; font-size: 1rem;">Available 24/7</div>
+            </div>
+            
+            <div class="services-container">
+                <!-- Audio Distribution -->
+                <a href="https://mixbeat.github.io/MixBeat/" target="_blank" class="service-card" data-service="audio-distribution">
+                    <div class="service-icon"><i class="fas fa-music"></i></div>
+                    <h3 class="service-title">Audio Distribution</h3>
+                    <p class="service-description">
+                        We distribute your single or album to over 300 platforms, including Spotify, Anghami, Apple Music, Deezer, and many more — as well as music stores like Music Store and Amazon Music.
+                    </p>
+                </a>
+                
+                <!-- Beat Selling -->
+                <a href="https://mixbeat.github.io/MIXBEATPremiumBeatStore-" target="_blank" class="service-card" data-service="beat-selling">
+                    <div class="service-icon"><i class="fas fa-drum"></i></div>
+                    <h3 class="service-title">Beat Selling</h3>
+                    <p class="service-description">
+                        High-quality music producers available at special prices. Artists retain full rights when purchasing beats with exclusive ownership.
+                    </p>
+                </a>
+                
+                <!-- Sound Engineering -->
+                <a href="https://mixbeat.github.io/MIX-BEAT-ENGINEERING-/" target="_blank" class="service-card" data-service="sound-engineering">
+                    <div class="service-icon"><i class="fas fa-sliders-h"></i></div>
+                    <h3 class="service-title">Sound Engineering</h3>
+                    <p class="service-description">
+                        A studio is available for recording your tracks, and online sound engineering services are also provided in case you're not able to attend the studio or if you're in a different country.
+                    </p>
+                </a>
+                
+                <!-- Artwork Design -->
+                <a href="https://mixbeat.github.io/MIXBEATARTWORK-/" target="_blank" class="service-card" data-service="artwork-design">
+                    <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                    <h3 class="service-title">Artwork Design</h3>
+                    <p class="service-description">
+                        Professional artwork designers are available, delivering high-quality and efficient cover designs with full copyright ownership reserved for the artist between both parties.
+                    </p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Artist Collaborations -->
+        <section id="artists" class="section">
+            <h2 class="section-title">Artist Collaborations</h2>
+            
+            <div class="artists-grid">
+                <!-- Artist 1 -->
+                <div class="artist-card">
+                    <img src="https://i.postimg.cc/Zn5dfz0B/Whats-App-Image-2025-12-25-at-9-01-43-AM.jpg" alt="GERBERTO" class="artist-image">
+                    <div class="artist-name">GERBERTO</div>
+                    <div class="artist-info-panel">
+                        <h3 class="artist-info-title">GERBERTO</h3>
+                        <div class="artist-info-genre">RAPPER/ Producer</div>
+                        <p class="artist-info-description">
+                            An Egyptian-Italian rapper who began his journey in 2020, but started gaining real attention in 2023. He's the founder of Rap Sa3ed, Gerbod, and Mix Beat. Known for his unique style and growing presence, he's behind standout tracks like "F!!!N", "7ANIIBA", "Schizophrenia", and "Fresh".  
+At just 18 years old, he's shaping a new wave in the underground scene.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Artist 2 -->
+                <div class="artist-card">
+                    <img src="https://i.postimg.cc/mDybPcLB/Whats-App-Image-2025-12-23-at-10-54-02-PM.jpg" alt="Yasin" class="artist-image">
+                    <div class="artist-name">Yasin</div>
+                    <div class="artist-info-panel">
+                        <h3 class="artist-info-title">Yasin</h3>
+                        <div class="artist-info-genre">Marketing / Rapper</div>
+                        <p class="artist-info-description">
+                            Yassin is a 15-year-old Egyptian rapper and digital marketer.  
+He began his rap journey in 2024–2025 and currently works as the lead marketing specialist at Mix Beat, where he helps artists grow their brand and reach new audiences.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Artist 3 -->
+                <div class="artist-card">
+                    <img src="https://i.postimg.cc/QtYjQ27X/Whats-App-Image-2025-12-25-at-9-31-35-AM.jpg" alt="GINJA" class="artist-image">
+                    <div class="artist-name">GINJA</div>
+                    <div class="artist-info-panel">
+                        <h3 class="artist-info-title">GINJA</h3>
+                        <div class="artist-info-genre">Rapper</div>
+                        <p class="artist-info-description">
+                            GINJA is an Egyptian rapper who began his rap journey in 2007–2008.  
+At 28 years old, he's known for his unique and powerful rap style.  
+He has left a strong mark on the scene with his distinctive flow and consistent work over the years.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Artist 4 -->
+                <div class="artist-card">
+                    <img src="https://i.postimg.cc/yNVJvzDk/Whats-App-Image-2025-12-25-at-9-43-19-AM.jpg" alt="Amjad Al-Khatib" class="artist-image">
+                    <div class="artist-name">Amjad Al-Khatib</div>
+                    <div class="artist-info-panel">
+                        <h3 class="artist-info-title">Amjad Al-Khatib</h3>
+                        <div class="artist-info-genre">Rapper</div>
+                        <p class="artist-info-description">
+                            A Syrian rap artist who began his career in early 2020.  
+Due to difficult circumstances, he had to pause for a while but later returned with strength.  
+He is known for his sharp rap style, deep and distinct vocal tone, and for using rap as a tool to deliver messages and express thoughts—not just for entertainment.
+                        </p>
+                        <p><strong>EP:</strong> Currently participating in an EP by the company titled Ash Inside.</p>
+                    </div>
+                </div>
+                
+                <!-- Artist 5 -->
+                <div class="artist-card">
+                    <img src="https://i.postimg.cc/8Pc3qFrK/IMG-3533.png" alt="LIL 3BDO" class="artist-image">
+                    <div class="artist-name">LIL 3BDO</div>
+                    <div class="artist-info-panel">
+                        <h3 class="artist-info-title">LIL 3BDO</h3>
+                        <div class="artist-info-genre">Rapper</div>
+                        <p class="artist-info-description">
+                            LIL 3BDO is a Syrian rapper who began his journey in late 2024 and entered the scene more actively in 2025. He's known for his unique and distinct rap style, which sets him apart in the underground scene.
+                        </p>
+                        <p><strong>EP:</strong> Currently participating in an EP by the company titled Ash Inside.</p>
+                    </div>
+                </div>
+                
+                <!-- Artist 6 -->
+                <div class="artist-card">
+                    <img src="https://i.postimg.cc/KYW1YR5t/image.png" alt="FODA" class="artist-image">
+                    <div class="artist-name">FODA</div>
+                    <div class="artist-info-panel">
+                        <h3 class="artist-info-title">FODA</h3>
+                        <div class="artist-info-genre">RAPPER</div>
+                        <p class="artist-info-description">
+                            A rapper from Alexandria, Egypt, known for his unique and distinctive rap style that reflects the spirit of the streets and local culture. His flow, tone, and lyrical delivery make him stand out in the underground scene.
+                        </p>
+                        <p><strong>EP:</strong> Currently participating in an EP by the company titled Ash Inside.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Work -->
+        <section id="work" class="section">
+            <h2 class="section-title">Our Work</h2>
+            
+            <div class="work-gallery">
+                <div class="work-item">
+                    <img src=https://i.postimg.cc/MTZr7C93/EP-Ash-Inside.png alt="Project 1" class="work-image">
+                    <div class="work-overlay">
+                        <h3>Ash Inside EP</h3>
+                        <p>prod by dr gerberto</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company Owner -->
+        <section id="owner" class="section">
+            <h2 class="section-title">GERBERTO</h2>
+            
+            <div class="owner-container">
+                <div class="owner-info">
+                    <img src="https://i.postimg.cc/Zn5dfz0B/Whats-App-Image-2025-12-25-at-9-01-43-AM.jpg" alt="GERBERTO" class="owner-image">
+                    <h3 class="owner-name">GERBERTO</h3>
+                    <div class="owner-title">rapper & Producer</div>
+                    <p>
+                        
+Gerberto is the owner and founder of the company. He is also a rapper, sound engineer, and the main producer.  
+The company was originally launched in 2024 under the name "Mafia GB Rap", and was later renamed to "Mix Beat" on March 9, 2025.
+
+Mix Beat has branches in both Egypt and Italy, and currently operates a professional studio in each country.
+
+It is also connected to "Rap Sa3ed", a free rap news platform.
+                    </p>
+                    <p>
+                    
+                    </p>
+                    <p>
+                        
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us -->
+        <section id="contact" class="section">
+            <h2 class="section-title">Contact Us</h2>
+            
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" id="name" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service" class="form-label">Service Interested In</label>
+                            <select id="service" class="form-input">
+                                <option value="">Select a service</option>
+                                <option value="audio-distribution">Audio Distribution</option>
+                                <option value="beat-selling">Beat Selling</option>
+                                <option value="sound-engineering">Sound Engineering</option>
+                                <option value="artwork-design">Artwork Design</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Your Message</label>
+                            <textarea id="message" class="form-textarea" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h3 style="color: var(--accent-gold); margin-bottom: 20px;">Get in Touch</h3>
+                    <p><i class="fas fa-envelope" style="color: var(--accent-red); margin-right: 10px;"></i> mix8eat@gmail.com</p>
+                    <p><i class="fas fa-clock" style="color: var(--accent-red); margin-right: 10px;"></i> Available 24/7 for urgent projects</p>
+                    
+                    <div style="margin-top: 30px;">
+                        <h4 style="color: var(--accent-gold); margin-bottom: 15px;">Follow Us</h4>
+                        <div style="display: flex; gap: 15px; justify-content: center;">
+                            <a href="https://www.instagram.com/mix8eat" target="_blank" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" id="spotifyLink">
+                                <i class="fab fa-spotify"></i>
+                            </a>
+                            <a href="https://youtube.com/@mixbeat7" target="_blank" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-link" id="soundcloudLink">
+                                <i class="fab fa-soundcloud"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-logo-container">
+                <img src="https://i.postimg.cc/wMv4Jv86/Whats-App-Image-2025-12-18-at-10-26-12-AM-(1).png" alt="MIX BEAT Logo" class="footer-logo-img">
+                <div class="footer-logo-text">MIX BEAT</div>
+            </div>
+            <p class="footer-text">
+                Professional music production, sound engineering, and audio services. 
+                Transforming creative visions into sonic reality since 2024.
+            </p>
+            <p style="color: var(--metallic-gray);">© 2025 MIX BEAT. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Cinematic Intro
+        document.addEventListener('DOMContentLoaded', function() {
+            const intro = document.getElementById('cinematic-intro');
+            const mainContent = document.querySelector('.main-content');
+            const mobileNavToggle = document.getElementById('mobileNavToggle');
+            const leftNav = document.getElementById('leftNav');
+            const cinematicNotification = document.getElementById('cinematicNotification');
+            const notificationClose = document.querySelector('.notification-close');
+            const spotifyLink = document.getElementById('spotifyLink');
+            const soundcloudLink = document.getElementById('soundcloudLink');
+            const exploreServicesBtn = document.getElementById('exploreServicesBtn');
+            
+            // Show intro for 4 seconds then transition to main content
+            setTimeout(() => {
+                intro.style.opacity = '0';
+                
+                setTimeout(() => {
+                    intro.style.display = 'none';
+                    mainContent.classList.add('active');
+                    
+                    // Start counter animation
+                    animateCounter();
+                }, 1000);
+            }, 4000);
+            
+            // Mobile navigation toggle
+            mobileNavToggle.addEventListener('click', function() {
+                leftNav.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (leftNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Close mobile nav when clicking outside
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 768) {
+                    if (!leftNav.contains(event.target) && !mobileNavToggle.contains(event.target) && leftNav.classList.contains('active')) {
+                        leftNav.classList.remove('active');
+                        const icon = mobileNavToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+            
+            // Navigation
+            const navItems = document.querySelectorAll('.nav-item');
+            const sections = document.querySelectorAll('.section');
+            
+            // Function to switch sections
+            function switchSection(targetId) {
+                // Update active nav item
+                navItems.forEach(nav => {
+                    if (nav.getAttribute('data-target') === targetId) {
+                        nav.classList.add('active');
+                    } else {
+                        nav.classList.remove('active');
+                    }
+                });
+                
+                // Show target section
+                sections.forEach(section => {
+                    if (section.id === targetId) {
+                        section.classList.add('active');
+                        section.style.display = 'block';
+                    } else {
+                        section.classList.remove('active');
+                        section.style.display = 'none';
+                    }
+                });
+                
+                // Close mobile nav if open
+                if (window.innerWidth <= 768 && leftNav.classList.contains('active')) {
+                    leftNav.classList.remove('active');
+                    const icon = mobileNavToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+                
+                // Scroll to top of section
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+            
+            // Add event listeners to nav items
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    switchSection(targetId);
+                });
+            });
+            
+            // Explore Services Button event listener
+            exploreServicesBtn.addEventListener('click', function() {
+                switchSection('services');
+            });
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    service: document.getElementById('service').value,
+                    message: document.getElementById('message').value
+                };
+                
+                // Create mailto link
+                const subject = `New Contact from ${formData.name} - MIX BEAT Website`;
+                const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0AService: ${formData.service}%0D%0AMessage: ${formData.message}`;
+                const mailtoLink = `mailto:mix8eat@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                
+                // Open email client
+                window.location.href = mailtoLink;
+                
+                // Show confirmation
+                alert('Thank you for your message! Your email client will open to send the message to mix8eat@gmail.com');
+                contactForm.reset();
+                
+                // Store form data in localStorage
+                storeFormData(formData);
+            });
+            
+            // Spotify and SoundCloud links show cinematic notification
+            spotifyLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showCinematicNotification('Spotify', 'Our Spotify profile is currently being set up and will be available soon. Stay tuned for our official releases!');
+            });
+            
+            soundcloudLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showCinematicNotification('SoundCloud', 'SoundCloud integration is coming soon! We\'re working on making our tracks available on all major platforms.');
+            });
+            
+            // Close notification
+            notificationClose.addEventListener('click', function() {
+                cinematicNotification.classList.remove('active');
+            });
+            
+            // Show cinematic notification
+            function showCinematicNotification(title, text) {
+                cinematicNotification.querySelector('.notification-title').textContent = title;
+                cinematicNotification.querySelector('.notification-text').textContent = text;
+                cinematicNotification.classList.add('active');
+            }
+            
+            // Infinite counter animation
+            function animateCounter() {
+                const counterElement = document.getElementById('service-counter');
+                let count = 0;
+                const targetCount = 2478; // Starting number
+                const increment = 3; // Increment value
+                
+                // Update counter every 50ms
+                const counterInterval = setInterval(() => {
+                    count += increment;
+                    counterElement.textContent = count.toLocaleString();
+                    
+                    // Continue counting indefinitely
+                    if (count > 1000000) count = targetCount; // Reset to a reasonable number
+                }, 50);
+            }
+            
+            // Store form data in localStorage
+            function storeFormData(formData) {
+                // Get existing data or initialize empty array
+                let storedData = JSON.parse(localStorage.getItem('mixBeatContacts')) || [];
+                
+                // Add timestamp
+                formData.timestamp = new Date().toISOString();
+                
+                // Add new form data
+                storedData.push(formData);
+                
+                // Keep only last 50 entries
+                if (storedData.length > 50) {
+                    storedData = storedData.slice(-50);
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('mixBeatContacts', JSON.stringify(storedData));
+                
+                console.log('Form data stored. Total entries:', storedData.length);
+            }
+            
+            // Check for stored data on page load
+            const storedContacts = JSON.parse(localStorage.getItem('mixBeatContacts'));
+            if (storedContacts) {
+                console.log('Previously stored contacts:', storedContacts.length);
+            }
+            
+            // Handle window resize for responsive behavior
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768 && leftNav.classList.contains('active')) {
+                    leftNav.classList.remove('active');
+                    const icon = mobileNavToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
